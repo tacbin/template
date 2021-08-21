@@ -1,14 +1,8 @@
 spring:
-  # 文件大小
-  servlet:
-    multipart:
-      max-file-size: 15MB
-      max-request-size: 15MB
-      enabled: true
   application:
-    name: dubbo-registry-zookeeper-consumer
+    name: login-starter
   redis:
-    host: 42.194.223.190
+    host: localhost
     lettuce:
       pool:
         max-active: 8
@@ -17,19 +11,24 @@ spring:
         min-idle: 0
     port: 6379
     timeout: 5000
-    password: tacbin@123
+    password: password
     database: 0
-embedded:
-  zookeeper:
-    port: 2181
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: password
+    username: root
+    url: jdbc:mysql://localhost:3306/user?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
+    hikari:
+      max-lifetime: 1000000
 
-dubbo:
-  registry:
-    address: zookeeper://127.0.0.1:${embedded.zookeeper.port}
+# mybatis
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
 
-# shiro
+login:
+  no-need: /user/**,/test/helloWorld
+
 shiro:
   loginUrl: 404.html
-
-custom:
-  md-times: 2
