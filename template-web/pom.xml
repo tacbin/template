@@ -5,7 +5,7 @@
     <parent>
         <artifactId>template</artifactId>
         <groupId>club.tacbin.template</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -16,6 +16,11 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>club.tacbin</groupId>
+            <artifactId>login-starter</artifactId>
+            <version>1.0-RELEASE</version>
+        </dependency>
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
