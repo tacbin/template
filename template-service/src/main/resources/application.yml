@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: dubbo-registry-zookeeper-provider
+  redis:
+    host: 42.194.223.190
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+    port: 6379
+    timeout: 5000
+    password: tacbin@123
+    database: 0
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: tacbin@123
+    username: root
+    url: jdbc:mysql://localhost:3306/template?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&allowMultiQueries=true&useSSL=true&serverTimezone=Asia/Shanghai
+    hikari:
+      max-lifetime: 1000000
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  scan:
+    base-packages: com.tacbin.town.service.service
+
+# mybatis
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml

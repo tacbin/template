@@ -1,0 +1,3 @@
+club\tacbin\template\service\ServiceApplication.class
+club\tacbin\template\service\test\ITestService.class
+club\tacbin\template\service\test\impl\TestServiceImpl.class
