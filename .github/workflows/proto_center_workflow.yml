@@ -46,6 +46,8 @@ jobs:
             git checkout $branchName
           fi
 
+          echo "ls:$(ls)"
+
           # 拷贝内容
           mkdir -p $project_name && cp -r ./template-api/src/main/* $project_name/
           # git add commit push 命令
