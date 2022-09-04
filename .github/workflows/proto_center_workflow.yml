@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths:
-      - '../template-api/src/main/*'
+      - '../../template-api/src/main/*'
 
 jobs:
   build:
