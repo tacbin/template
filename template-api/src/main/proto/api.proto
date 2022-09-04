@@ -7,7 +7,6 @@ option java_outer_classname = "HelloWorldProto";
 option objc_class_prefix = "HLW";
 package helloworld;
 
-
 message HelloRequest {
     string name = 1;
 }
