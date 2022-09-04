@@ -4,7 +4,9 @@ on:
     branches:
       - master
     paths:
-      - '*'
+      - 'template-api/src/main/proto/*'
+      - 'template-api/src/main/java/*'
+      - 'template-api/src/main/go/*'
 
 jobs:
   build:
@@ -22,8 +24,6 @@ jobs:
           access-token: ${{secrets.RESP_TOKEN}}
       - name: push to proto-center
         run: |
-          echo "current path:"
-          echo $(pwd)
           project_name=$(basename `pwd`)
           echo "project name is : $project_name"
           git config --global user.name "robot"
@@ -47,7 +47,7 @@ jobs:
           fi
 
           # 拷贝内容
-          mkdir -p $project_name && cp -r ../template-api/src/main/* $project_name/
+          mkdir -p $project_name && cp -r ./template-api/src/main/* $project_name/
           # git add commit push 命令
           git add .
           git commit -m "$project_name's robot updated"
