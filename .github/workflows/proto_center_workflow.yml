@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths:
-      - '../../template-api/src/main/*'
+      - '*'
 
 jobs:
   build:
@@ -22,6 +22,7 @@ jobs:
           access-token: ${{secrets.RESP_TOKEN}}
       - name: push to proto-center
         run: |
+          echo pwd
           project_name=$(basename `pwd`)
           echo "project name is : $project_name"
           git config --global user.name "robot"
