@@ -14,6 +14,7 @@ FROM java:8
 #end
 #USER appdeploy
 
+
 WORKDIR /app/deploy/
 
 ADD ./target/*.zip /app/deploy/
