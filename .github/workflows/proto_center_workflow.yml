@@ -23,7 +23,7 @@ jobs:
       - name: push to proto-center
         run: |
           echo "current path:"
-          echo pwd
+          echo $(pwd)
           project_name=$(basename `pwd`)
           echo "project name is : $project_name"
           git config --global user.name "robot"
