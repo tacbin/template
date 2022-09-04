@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths:
-      - '*'
+      - 'template-api/src/main/*'
 
 jobs:
   build:
@@ -45,7 +45,7 @@ jobs:
           fi
 
           # 拷贝内容
-          mkdir -p $project_name && cp -r ../protobuf/* $project_name/
+          mkdir -p $project_name && cp -r ../template-api/src/main/* $project_name/
           # git add commit push 命令
           git add .
           git commit -m "$project_name's robot updated"
