@@ -1,4 +1,7 @@
 package club.tacbin.template.service.test;
 
-public interface ITestService {
+
+import org.apache.dubbo.greet.Greeter;
+
+public interface ITestService extends Greeter {
 }
