@@ -4,9 +4,9 @@ on:
     branches:
       - master
     paths:
-      - 'template-api/src/main/proto/*'
-      - 'template-api/src/main/java/*'
-      - 'template-api/src/main/go/*'
+      - '/template-api/src/main/proto/*'
+      - '/template-api/src/main/java/*'
+      - '/template-api/src/main/go/*'
 
 jobs:
   build:
