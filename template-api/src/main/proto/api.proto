@@ -6,7 +6,6 @@ option java_package = "org.apache.dubbo.hello";
 option java_outer_classname = "HelloWorldProto";
 option objc_class_prefix = "HLW";
 
-
 package helloworld;
 
 message HelloRequest {
