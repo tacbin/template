@@ -1,4 +1,4 @@
-name: Labeler
+name: template-proto-center
 on:
   push:
     branches:
