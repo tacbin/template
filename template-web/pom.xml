@@ -5,7 +5,7 @@
     <parent>
         <artifactId>template</artifactId>
         <groupId>club.tacbin.template</groupId>
-        <version>1.4-RELEASE</version>
+        <version>1.5-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>club.tacbin</groupId>
             <artifactId>login-starter</artifactId>
-            <version>1.4-RELEASE</version>
+            <version>1.5-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>redis.clients</groupId>

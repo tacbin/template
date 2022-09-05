@@ -12,7 +12,7 @@
     <groupId>club.tacbin.template</groupId>
     <artifactId>template</artifactId>
     <packaging>pom</packaging>
-    <version>1.4-RELEASE</version>
+    <version>1.5-RELEASE</version>
     <modules>
         <module>template-web</module>
         <module>template-persistence</module>
