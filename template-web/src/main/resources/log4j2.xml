@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status : 这个用于设置log4j2自身内部的信息输出,可以不设置,当设置成trace时。
+ 注：本配置文件的目标是将不同级别的日志输出到不同文件，最大1MB一个文件，
+    文件数据达到最大值时，旧数据会被压缩并放进指定文件夹 ，最多存放20个文件-->
+<Configuration status="error">
+    <!-- 配置日志文件输出目录，此配置将日志输出到根目录下的指定文件夹 -->
+    <Properties>
+        <Property name="fileDir">/logs/log4j2</Property>
+        <Property name="fileHistory">/logs/log4j2/history</Property>
+    </Properties>
+    <Appenders>
+        <!-- 优先级从高到低分别是 OFF、FATAL、ERROR、WARN、INFO、DEBUG、ALL -->
+        <!-- 单词解释： Match：匹配 DENY：拒绝 Mismatch：不匹配 ACCEPT：接受 -->
+        <!-- DENY，日志将立即被抛弃不再经过其他过滤器； NEUTRAL，有序列表里的下个过滤器过接着处理日志； ACCEPT，日志会被立即处理，不再经过剩余过滤器。 -->
+        <!--输出日志的格式
+        %d{yyyy-MM-dd HH:mm:ss, SSS} : 日志生产时间
+        %t 输出当前线程名称
+        %-5level 输出日志级别，-5表示左对齐并且固定输出5个字符，如果不足在右边补0
+        %logger 输出logger名称，因为Root Logger没有名称，所以没有输出
+        %msg 日志文本
+        %n 换行
+        其他常用的占位符有：
+        %F 输出所在的类文件名，如Client.java
+        %L 输出行号
+        %M 输出所在方法名
+        %l  输出语句所在的行数, 包括类名、方法名、文件名、行数
+         -->
+        <!--这个输出控制台的配置，这里输出all信息到System.out -->
+        <console name="Console" target="SYSTEM_OUT">
+            <!-- 输出日志的格式 -->
+            <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %l %msg%n" />
+        </console>
+        <!--这个输出文件的配置，这里输出info信息到junbao_info.log -->
+        <RollingFile name="RollingFileInfo" fileName="${fileDir}/info.log" filePattern="${fileHistory}/info/%d{yyyy-MM-dd}-%i.log">
+            <!-- 此Filter意思是，只输出info级别的数据 DENY，日志将立即被抛弃不再经过其他过滤器； NEUTRAL，有序列表里的下个过滤器过接着处理日志；
+                    ACCEPT，日志会被立即处理，不再经过剩余过滤器。 -->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %l %msg%n" />
+            <Policies>
+                <!-- 如果启用此配置，则日志会按文件名生成新文件， 即如果filePattern配置的日期格式为 %d{yyyy-MM-dd HH}
+                        ，则每小时生成一个压缩文件， 如果filePattern配置的日期格式为 %d{yyyy-MM-dd} ，则天生成一个压缩文件,默认为1 -->
+                <TimeBasedTriggeringPolicy />
+                <!-- 每个日志文件最大1MB,超过1MB生产新的文件 ; -->
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+            <!--文件夹下最多的文件个数-->
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+        <RollingFile name="RollingFileWarn" fileName="${fileDir}/warn.log" filePattern="${fileHistory}/warn/%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %l %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+        <RollingFile name="RollingFileError" fileName="${fileDir}/error.log" filePattern="${fileHistory}/error/%d{yyyy-MM-dd}-%i.log">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %l %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+    </Appenders>
+    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+    <Loggers>
+        <!--全异步输出info级以上的日志信息-->
+        <asyncRoot level="info" includeLocation="true">
+            <appender-ref ref="Console" />
+            <appender-ref ref="RollingFileInfo" />
+        </asyncRoot>
+        <!--同步输出info级以上的日志信息-->
+        <!-- <root level="info" includeLocation="true">
+            <appender-ref ref="Console" />
+        </root> -->
+    </Loggers>
+</Configuration>

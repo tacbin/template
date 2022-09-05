@@ -1,3 +1,8 @@
 /target/
 /.idea/
 /template.iml
+/template-common/target/
+/template-persistence/target/
+/template-service/target/
+/template-web/target/
+/template-api/target/
